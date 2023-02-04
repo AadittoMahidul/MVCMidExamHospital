@@ -1,0 +1,61 @@
+﻿@model MidEvidence_08_MVC_HospitalPatient.Models.Patient
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h3 class="col-4 mb-3" style="text-align:center;">Are you sure want to delete?</h3>
+
+        @Html.HiddenFor(x => x.PatientId)
+        <div class="form-group row mb-1">
+            @Html.LabelFor(x => x.PatientName, new { @class = "col-form-label col-form-label-sm col-2" })
+            <div class="col-5">
+                @Html.DisplayFor(x => x.PatientName)
+
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            @Html.LabelFor(x => x.Email, new { @class = "col-form-label col-form-label-sm col-2" })
+            <div class="col-5">
+                @Html.DisplayFor(x => x.Email)
+
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            @Html.LabelFor(x => x.Phone, new { @class = "col-form-label col-form-label-sm col-2" })
+            <div class="col-5">
+                @Html.DisplayFor(x => x.Phone)
+
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            @Html.LabelFor(x => x.Hospital, new { @class = "col-form-label col-form-label-sm col-2" })
+            <div class="col-5">
+                @Html.DisplayFor(x => x.Hospital.HospitalName)
+
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            @Html.LabelFor(x => x.Picture, new { @class = "col-form-label col-form-label-sm col-2" })
+            <div class="col-5">
+                <img src="~/Assets/@Model.Picture" class="img-thumbnail" style="width:120px; height:110px;" />
+
+            </div>
+
+        </div>
+
+        @using (Html.BeginForm("Delete", "Patients", new { id = Model.PatientId }, FormMethod.Post))
+        {
+
+            <div class="col-4 offset-2">
+                <button type="submit" class="btn btn-danger">Confirm Delete</button>
+
+            </div>
+        }
+    </div>
+    <div class="col-1" style="background-color:lightgrey">
+        @Html.ActionLink("Back to list", "Index")
+    </div>
+</div>
+

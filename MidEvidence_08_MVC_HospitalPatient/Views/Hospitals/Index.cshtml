@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MidEvidence_08_MVC_HospitalPatient.Models.Hospital>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h3 class="mb-4" style="color:white; background-color:teal; text-align:center; padding:3px;">Hospital Details</h3>
+        <div class="d-flex justify-content-end mb-2">
+            @Html.ActionLink("Add New Hospital", "Create", "Hospitals", new { }, new { @class = "btn btn-primary btn-sm" })
+        </div>
+        <table class="table table-bordered">
+            <thead style="background-color: darkseagreen">
+                <tr>
+                    <th>@Html.DisplayNameFor(x => x.HospitalName)</th>
+                    <th>@Html.DisplayNameFor(x => x.Department)</th>
+                    <th>@Html.DisplayNameFor(x => x.Payment)</th>
+                    <th>@Html.DisplayNameFor(x => x.AdmitDate)</th>
+                    <th>@Html.DisplayNameFor(x => x.EndDate)</th>
+                    <th>@Html.DisplayNameFor(x => x.IsContinuing)</th>
+                    
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var m in Model)
+                {
+                    <tr style="background-color:beige">
+                        <td>@Html.DisplayFor(x => m.HospitalName)</td>
+                        <td>@Html.DisplayFor(x => m.Department)</td>
+                        <td>@Html.DisplayFor(x => m.Payment)</td>
+                        <td>@Html.DisplayFor(x => m.AdmitDate)</td>
+                        <td>@Html.DisplayFor(x => m.EndDate)</td>
+                        <td>@(m.IsContinuing ? "Yes": "No")</td>
+                        
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "Hospitals", new { id = m.HospitalId }, new { @class = "btn btn-secondary btn-sm" })
+                            <a href="@Url.Action("Delete", "Hospitals", new {id=m.HospitalId})" class="btn btn-danger btn-sm @(m.Patients.Count > 0 ? "disabled" :"")">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

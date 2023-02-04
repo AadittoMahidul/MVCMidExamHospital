@@ -1,0 +1,60 @@
+﻿@model MidEvidence_08_MVC_HospitalPatient.Models.Hospital
+@using (Ajax.BeginForm("EditHospital", "Hospitals", new { }, new AjaxOptions
+{
+    HttpMethod = "Post",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "alert",
+    LoadingElementId = "spinner"
+
+}, new { id = "f" }))
+{
+    @Html.HiddenFor(x=>x.HospitalId)
+    <div class="form-group row mb-1">
+        @Html.LabelFor(x => x.HospitalName, new { @class = "col-form-label col-form-label-sm col-2" })
+        <div class="col-5">
+            @Html.TextBoxFor(x => x.HospitalName, new { @class = "form-control form-control-sm" })
+            @Html.ValidationMessageFor(x => x.HospitalName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row mb-1">
+        @Html.LabelFor(x => x.Department, new { @class = "col-form-label col-form-label-sm col-2" })
+        <div class="col-5">
+            @Html.EnumDropDownListFor(x => x.Department, new { @class = "form-select form-select-sm" })
+            @Html.ValidationMessageFor(x => x.Department, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row mb-1">
+        @Html.LabelFor(x => x.Payment, new { @class = "col-form-label col-form-label-sm col-2" })
+        <div class="col-5">
+            @Html.TextBoxFor(x => x.Payment, new { @class = "form-control form-control-sm", type = "money" })
+            @Html.ValidationMessageFor(x => x.Payment, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row mb-1">
+        @Html.LabelFor(x => x.AdmitDate, new { @class = "col-form-label col-form-label-sm col-2" })
+        <div class="col-5">
+            @Html.TextBoxFor(x => x.AdmitDate, new { @class = "form-control form-control-sm date" })
+            @Html.ValidationMessageFor(x => x.AdmitDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row mb-1">
+        @Html.LabelFor(x => x.EndDate, new { @class = "col-form-label col-form-label-sm col-2" })
+        <div class="col-5">
+            @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control form-control-sm date" })
+            @Html.ValidationMessageFor(x => x.EndDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row mb-1">
+        @Html.LabelFor(x => x.IsContinuing, new { @class = "col-form-label col-form-label-sm col-2" })
+        <div class="col-5">
+            @Html.CheckBoxFor(x => x.IsContinuing, new { @class = "form-check" })
+            @Html.ValidationMessageFor(x => x.IsContinuing, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row mb-1">
+       
+        <div class="col-4 offset-2">
+           <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </div>
+}

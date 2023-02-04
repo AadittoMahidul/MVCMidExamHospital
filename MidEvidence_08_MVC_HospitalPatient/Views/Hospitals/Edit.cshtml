@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div id="alert"></div>
+        <div id="spinner" style="display:none">
+            <div class="d-flex align-items-center text-primary">
+                <span>Loading...</span>
+                <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <h3 class="col-7 mb-5" style="background-color: darkseagreen; text-align:center; padding-bottom:2px;">Edit Hospital</h3>
+        @Html.Action("EditHospital", new { id = ViewBag.Id })
+    </div>
+    <div class="col-1" style="background-color:lightgrey;">
+        @Html.ActionLink("Back to list", "Index")
+    </div>
+</div>
+
+@section styles{
+    <link href="~/Content/bootstrap-datepicker.standalone.css" rel="stylesheet" />
+}
+@section scripts{
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script>
+        function onSuccess() {
+            $("#f").trigger('reset');
+        }
+        $(".date").datepicker({
+            format: "yyyy-mm-dd"
+        });
+        $("#StartDate").val(formatDate($("#StartDate").val()));
+        if ($("#EndDate").val() != "") {
+            $("#EndDate").val(formatDate($("#EndDate").val()));
+        }
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+    </script>
+}

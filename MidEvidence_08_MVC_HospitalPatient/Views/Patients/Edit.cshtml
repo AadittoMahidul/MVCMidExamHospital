@@ -1,0 +1,71 @@
+﻿@model MidEvidence_08_MVC_HospitalPatient.ViewModel.PatientEditModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h3 class="col-7 mb-5" style="background-color: darkseagreen; text-align:center; padding-bottom:2px;">Edit Patient</h3>
+        @using (Html.BeginForm("Edit", "Patients", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(x => x.PatientId)
+            <div class="form-group row mb-1">
+                @Html.LabelFor(x => x.PatientName, new { @class = "col-form-label col-form-label-sm col-2" })
+                <div class="col-5">
+                    @Html.TextBoxFor(x => x.PatientName, new { @class = "form-control form-control-sm" })
+                    @Html.ValidationMessageFor(x => x.PatientName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                @Html.LabelFor(x => x.Email, new { @class = "col-form-label col-form-label-sm col-2" })
+                <div class="col-5">
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control form-control-sm" })
+                    @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                @Html.LabelFor(x => x.Phone, new { @class = "col-form-label col-form-label-sm col-2" })
+                <div class="col-5">
+                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control form-control-sm" })
+                    @Html.ValidationMessageFor(x => x.Phone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                @Html.LabelFor(x => x.HospitalId, new { @class = "col-form-label col-form-label-sm col-2" })
+                <div class="col-5">
+                    @Html.DropDownListFor(x => x.HospitalId, new SelectList(ViewBag.Hospitals, "HospitalId", "HospitalName"), "Select One", new { @class = "form-select form-select-sm" })
+                    @Html.ValidationMessageFor(x => x.HospitalId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                @Html.LabelFor(x => x.Picture, new { @class = "col-form-label col-form-label-sm col-2" })
+                <div class="col-5">
+                    @Html.TextBoxFor(x => x.Picture, new { @class = "form-control form-control-sm", type = "file" })
+                    @Html.ValidationMessageFor(x => x.Picture, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-1">
+                    <img src="~/Assets/@ViewBag.CurrentPic" class="img-thumbnail" style="width:80px; height:70px;" />
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+
+                <div class="col-4 offset-2">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        }
+    </div> 
+    <div class="col-1" style="background-color:lightgrey">
+        @Html.ActionLink("Back to list", "Index")
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+}
+
+
+
+

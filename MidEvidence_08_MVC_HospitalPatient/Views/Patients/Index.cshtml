@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MidEvidence_08_MVC_HospitalPatient.Models.Patient>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h3 class="mb-4" style="color:white; background-color:teal; text-align:center; padding:3px;">Patient Details</h3>
+        <div class="d-flex justify-content-end mb-2">
+            @Html.ActionLink("Add New Patient", "Create", "Patients", new { }, new { @class = "btn btn-primary btn-sm" })
+        </div>
+        <table class="table table-bordered">
+            <thead @*class="bg-secondary text-white"*@ style="background-color: darkseagreen">
+                <tr>
+                    <th>@Html.DisplayNameFor(x => x.Picture)</th>
+                    <th>@Html.DisplayNameFor(x => x.PatientName)</th>
+                    <th>@Html.DisplayNameFor(x => x.Hospital.HospitalName)</th>
+                    <th>@Html.DisplayNameFor(x => x.Email)</th>
+                    <th>@Html.DisplayNameFor(x => x.Phone)</th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var m in Model)
+                {
+                <tr style="background-color:beige">
+                    <td><img src="~/Assets/@m.Picture" class="rounded-circle" style="width:42px; height:42px;" /></td>
+                    <td>@Html.DisplayFor(x => m.PatientName)</td>
+                    <td>@Html.DisplayFor(x => m.Hospital.HospitalName)</td>
+                    <td>@Html.DisplayFor(x => m.Email)</td>
+                    <td>@Html.DisplayFor(x => m.Phone)</td>
+
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Patients", new { id = m.PatientId }, new { @class = "btn btn-secondary btn-sm" })
+                        <a href="@Url.Action("Delete", "Patients", new {id=m.PatientId})" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

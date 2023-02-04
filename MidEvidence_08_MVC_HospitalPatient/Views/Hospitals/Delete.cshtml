@@ -1,0 +1,68 @@
+﻿@model MidEvidence_08_MVC_HospitalPatient.Models.Hospital
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="row">
+    <div class="col-12">
+       <h3 class="col-3 mb-3" style="text-align:center;">Confirm delete</h3>
+    </div>
+    <div class="col-12">
+        <div class="form-group row mb-1">
+            @Html.LabelFor(x => x.HospitalName, new { @class = "col-form-label col-form-label-sm col-2" })
+            <div class="col-5">
+                @Html.DisplayFor(x => x.HospitalName)
+               
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            @Html.LabelFor(x => x.Department, new { @class = "col-form-label col-form-label-sm col-2" })
+            <div class="col-5">
+                @Html.DisplayFor(x => x.Department)
+                
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            @Html.LabelFor(x => x.Payment, new { @class = "col-form-label col-form-label-sm col-2" })
+            <div class="col-5">
+                @Html.DisplayFor(x => x.Payment)
+              
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            @Html.LabelFor(x => x.AdmitDate, new { @class = "col-form-label col-form-label-sm col-2" })
+            <div class="col-5">
+                @Html.DisplayFor(x => x.AdmitDate)
+               
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            @Html.LabelFor(x => x.EndDate, new { @class = "col-form-label col-form-label-sm col-2" })
+            <div class="col-5">
+                @Html.DisplayFor(x => x.EndDate)
+               
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            @Html.LabelFor(x => x.IsContinuing, new { @class = "col-form-label col-form-label-sm col-2" })
+            <div class="col-5">
+                @Html.CheckBoxFor(x => x.IsContinuing, new { @class = "form-check", disabled="true" })
+                
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+
+          @using (Html.BeginForm())
+            {
+                @Html.HiddenFor(x=> x.HospitalId)
+             <div class="col-4 offset-2">
+                 <button type="submit" class="btn btn-danger">Confirm Delete</button>
+             </div>
+            }
+        </div>
+    </div>
+    <div class="col-1" style="background-color:lightgrey">
+        @Html.ActionLink("Back to list", "Index")
+    </div>
+</div>
+
